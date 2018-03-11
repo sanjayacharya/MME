@@ -1,0 +1,121 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Fill you leave details!
+    </div>
+
+    <div class="panel-body">
+        <form class="form-horizontal" (ngSubmit)="save()" [formGroup]="employeeForm">
+            <fieldset>
+                <!-- Employee No -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="employeeNoId">Employee No</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="employeeNoId" type="text" formControlName="employeeNo" placeholder="Employee no (required)" />
+                    </div>
+                </div>
+
+                <!-- Employee Name -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="employeeNameId">Employee Name</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="employeeNameId" type="text" formControlName="employeeName" placeholder="Employee no (required)" />
+                    </div>
+                </div>
+
+                <!-- Employee Email -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="emailId">Email</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="emailId" type="email" formControlName="emailAddress" placeholder="Email (required)" />
+                    </div>
+                </div>
+
+                <!-- Employee WorkOrder -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="employeeWO">Employee WO</label>
+                    <div class="col-md-3">
+                        <select class="form-control" id="employeeWo" formControlName="employeeWorkOrder">
+                            <option value="" disabled selected hidden>Select a work order...</option>
+                            <option value="123456">123456</option>
+                            <option value="234567">234567</option>
+                            <option value="456789">456789</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Employee Billable Type -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Billable Type</label>
+                    <div class="col-md-8">
+                        <label class="radio-inline">
+                            <input type="radio" value="billable" formControlName="billableType">Billable
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="buffer" formControlName="billableType">Buffer
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Employee Billable Type -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Location</label>
+                    <div class="col-md-8">
+                        <label class="radio-inline">
+                            <input type="radio" value="offShore" formControlName="location">OffShore
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="onShore" formControlName="location">OnShore
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Employee leave date range -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Date range(From-To)</label>
+                    <div class="col-md-3">
+                        <input type="date" class="form-control" id="fromDate" formControlName="fromDate">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date" class="form-control" id="toDate" formControlName="toDate">
+                    </div>
+                </div>
+
+                <!-- Backfill availability checkbox -->
+                <div class="form-group">
+                    <div class="col-md-offset-1 col-md-8 checkbox">
+                        <label>
+                            <input id="backfilledId" type="checkbox" formControlName="backfilled">Is backfill available?
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Backfill employee name -->
+                <div class="form-group" *ngIf="employeeForm.get('backfilled').value">
+                        <label class="col-md-2 control-label" for="backfillEmployeeName">Employee Name</label>
+                        <div class="col-md-3">
+                            <select class="form-control" id="backfillEmployeeName" formControlName="backfillEmployeeName">
+                                <option value="" disabled selected hidden>Select a name...</option>
+                                <option value="suyash">suyash</option>
+                                <option value="Sanjay">sanjay</option>
+                                <option value="monika">monika</option>
+                            </select>
+                        </div>
+                    </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-2">
+                        <span>
+                            <button class="btn btn-primary" type="submit">
+                                Save
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<br>Value: {{ employeeForm.value | json }}
+<br>Value: {{ employeeForm.value.toDate | json }}
